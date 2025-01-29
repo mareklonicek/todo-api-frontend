@@ -1,0 +1,289 @@
+@use 'sass:color';
+
+$dark-base: #121212;
+$highlight-blue: #1E90FF;
+$accent-blue: #4169E1;
+$text-dark: #EAEAEA;
+$text-light: #B0C4DE;
+$danger-red: #FF6347;
+$shadow-depth: #444444;
+
+/********************
+       GENERAL
+********************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $dark-base;
+    color: $text-dark;
+    font-family: 'Arial', sans-serif;
+}
+
+/********************
+ GRID LAYOUT (CARDS) 
+********************/
+.todo-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual task item styled like a card */
+.todo-item {
+    background-color: #2e2e2e;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Task title and description */
+.todo-item-title {
+    font-size: 20px;
+    color: $text-light;
+    margin-bottom: 10px;
+}
+
+.todo-item-description {
+    color: $text-light;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Status dropdown */
+.todo-item-status select {
+    background-color: #444;
+    color: $text-light;
+    border: 1px solid #666;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Actions section */
+.todo-item-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/********************
+       BUTTONS
+********************/
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Delete button */
+.delete-btn {
+    background-color: $danger-red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* to have the button "float" to the right */
+}
+
+.delete-btn:hover {
+    background-color: color.adjust($danger-red, $lightness: -10%);
+}
+
+.delete-btn i {
+    margin-right: 0px;
+}
+
+/* Input or form styling */
+input, select {
+    background-color: #333;
+    border: none;
+    color: $text-light;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 5px $highlight-blue;
+}
+
+/********************
+        TABLE
+********************/
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed-width {
+    word-wrap: break-word;
+}
+
+th, td {
+    padding: 10px;
+    border: 2px solid $highlight-blue;
+}
+
+th {
+    background-color: color.adjust($highlight-blue, $lightness: -15%);
+    color: $text-light;
+    text-align: left;
+}
+
+tr:nth-child(odd) {
+    background-color: $shadow-depth;
+}
+
+tr:nth-child(even) {
+    background-color: color.adjust($shadow-depth, $lightness: +5%);
+}
+
+button {
+    padding: 5px 10px;
+    background-color: $highlight-blue;
+    color: $text-light;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: color.adjust($highlight-blue, $lightness: +10%);
+    color: $text-dark;
+}
+
+/********************
+  'ADD TASK' BUTTON 
+********************/
+.main-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: $accent-blue;
+    color: $text-light;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.main-button:hover {
+    background-color: color.adjust($accent-blue, $lightness: -10%);
+    color: $text-dark;
+}
+
+/********************
+      TASK FORM 
+********************/
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $highlight-blue;
+    border-radius: 4px;
+    background-color: #333;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: $text-light;
+
+    &:focus {
+        outline: none;
+        border-color: $highlight-blue;
+        box-shadow: 0 0 5px $highlight-blue;
+    }
+}
+
+.form-textarea {
+    resize: none;
+    height: 100px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-select {
+    text-align: center;
+}
+
+.submit-button, .cancel-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.submit-button {
+    background-color: $accent-blue;
+    margin: 0 auto;
+    color: $text-light;
+
+    &:hover {
+        background-color: color.adjust($accent-blue, $lightness: -10%);
+    }
+}
+
+.cancel-button {
+    background-color: $danger-red;
+    color: $text-light;
+    margin: 0 auto;
+
+    &:hover {
+        background-color: color.adjust($danger-red, $lightness: -10%);
+    }
+}
+
+/********************
+        MODAL 
+********************/
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    color: $text-light;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    position: relative;
+}
