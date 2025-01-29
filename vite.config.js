@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
    server: {
     proxy: {
-      '/api': 'https://todo-api.onrender.com'
+      '/api': 'https://php-todo-api.onrender.com'
     }
   }
 })
